@@ -10,7 +10,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Contact {
+model contacts {
 	id Int @default(autoincrement()) @id
 	firstName String
 	lastName String

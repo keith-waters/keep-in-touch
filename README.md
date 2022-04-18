@@ -3,10 +3,17 @@
 First, run the development server:
 
 ```bash
+# start mysql docker
+docker-compose up -d
+
+# push database schema
+npx prisma db push
+
+# start the web app
 npm run dev
-# or
-yarn dev
 ```
+
+Then navigate to `http://localhost:3000`!
 
 ## Requirements
 - contact entity must have firstName, lastName, emailAddress, phoneNumber.

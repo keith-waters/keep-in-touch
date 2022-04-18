@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import CssBaseline from '@mui/material/CssBaseline'
-import Paper from '@mui/material/Paper'
-import Contact from '../components/Contact'
 
 const StyledDiv = styled.div`
 	max-width: 600px;

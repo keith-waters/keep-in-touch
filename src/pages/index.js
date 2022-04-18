@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import Button from '@mui/material/Button'
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import EditIcon from '@mui/icons-material/Edit'
 
 
 
@@ -18,7 +19,13 @@ const Contact = (props) => {
 			props.setContacts([...data.filter(x => x)])
 		}
 	}
-
+	const params = new URLSearchParams({
+		firstName: props.firstName,
+		lastName: props.lastName,
+		emailAddress: props.emailAddress,
+		phoneNumber: props.phoneNumber,
+		id: props.id
+	})
 	return (
 		<Card variant='outlined'>
 			<Typography>
@@ -27,6 +34,11 @@ const Contact = (props) => {
 			<Typography>
 				Email: {props.emailAddress} Phone: {props.phoneNumber}
 			</Typography>
+			<Link href={`/edit/${props.id}?${params}`}>
+				<Button>
+					<EditIcon />
+				</Button>
+			</Link>
 			<Button onClick={() => handleDelete(props.id)}>
 				<DeleteForeverIcon />
 			</Button>

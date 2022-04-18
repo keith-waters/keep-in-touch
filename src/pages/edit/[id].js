@@ -1,23 +1,17 @@
 import { useState } from 'react'
 import axios from 'axios'
-import { useRouter } from 'next/router'
 import Button from '@mui/material/Button'
 import Link from 'next/link'
-import ContactForm from '../components/ContactForm'
+import { useRouter } from 'next/router'
+import ContactForm from '../../components/ContactForm'
 
 export default function Create() {
 	const router = useRouter()
+
 	const initialValues = {
-		firstName: '',
-		lastName: '',
-		emailAddress: '',
-		phoneNumber: ''
+		...router.query
 	}
 	const [formData, setFormData] = useState([initialValues])
-
-	const handleAdd = () => {
-		if (formData.length < 5) setFormData([...formData, initialValues])
-	}
 
 	const handleChange = (index, data) => {
 		const contacts = [...formData]
@@ -27,7 +21,7 @@ export default function Create() {
 
 	const handleSubmit = async () => {
 		for(const data of formData) {
-			const res = await axios.post('/api/contacts', data)
+			const res = await axios.put(`/api/contacts/${router.query.id}`, data)
 		}
 		router.push('/')
 	}
@@ -42,11 +36,6 @@ export default function Create() {
 					{ ...data }
 				/>
 			))}
-			<Button
-				onClick={handleAdd}
-			>
-			  Add another contact	
-			</Button>
 			<Link href='/'>
 				<Button>
 					Cancel

@@ -4,13 +4,14 @@ import axios from 'axios'
 import Card from '@mui/material/Card'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import Link from 'next/link'
 
 const StyledCard = styled(Card)`
 	padding: 5px;
 	margin: 5px;
 `
 
-const Contact = (props) => {
+const ContactForm = (props) => {
 	const initialValues = {
 		firstName: '',
 		lastName: '',
@@ -54,6 +55,11 @@ const Contact = (props) => {
 				onChange={(ev) => {setValues({...values, phoneNumber: ev.target.value})}}
 			/>
 			<br/>
+			<Link href='/'>
+				<Button>
+					Cancel
+				</Button>
+			</Link>
 			<Button
 				type='submit'
 				onClick={handleSubmit}
@@ -65,4 +71,4 @@ const Contact = (props) => {
 
 }
 
-export default Contact;
+export default ContactForm;

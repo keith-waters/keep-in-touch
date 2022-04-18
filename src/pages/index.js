@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Paper from '@mui/material/Paper'
 import Contact from '../components/Contact'
 
-const Layout = styled(Paper)`
+const Layout = styled.div`
 	max-width: 600px;
 	text-align: center;
 	margin: auto;

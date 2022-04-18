@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import Link from 'next/link'
 import Button from '@mui/material/Button'
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 
 
@@ -9,6 +10,15 @@ import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import Typography from '@mui/material/Typography'
 const Contact = (props) => {
+	const handleDelete = async (id) => {
+		const res = await axios.delete(`/api/contacts/${id}`)
+		if(res) {
+			const data = [...props.contacts]
+			data[props.index] = null
+			props.setContacts([...data.filter(x => x)])
+		}
+	}
+
 	return (
 		<Card variant='outlined'>
 			<Typography>
@@ -17,6 +27,9 @@ const Contact = (props) => {
 			<Typography>
 				Email: {props.emailAddress} Phone: {props.phoneNumber}
 			</Typography>
+			<Button onClick={() => handleDelete(props.id)}>
+				<DeleteForeverIcon />
+			</Button>
 		</Card>
 	)
 }
@@ -41,10 +54,13 @@ export default function Home() {
 					Add contacts
 				</Button>
 			</Link>
-			{contacts.map((contact) => {
+			{contacts.map((contact, index) => {
 				return (
 					<Contact 
-						key={contact.firstName}
+						key={index}
+						index={index}
+						contacts={contacts}
+						setContacts={setContacts}
 						{...contact}
 					/>
 				)

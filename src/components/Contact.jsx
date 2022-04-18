@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import styled from '@emotion/styled'
+import axios from 'axios'
 import Card from '@mui/material/Card'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
@@ -18,8 +19,8 @@ const Contact = (props) => {
 	}
 	const [values, setValues] = useState(initialValues)
 
-	const handleSubmit = () => {
-		console.log("HEY", values)
+	const handleSubmit = async () => {
+		const res = await axios.post('/api/contacts', values)
 	}
 	
 	return (

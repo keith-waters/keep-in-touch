@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import styled from '@emotion/styled'
 import Card from '@mui/material/Card'
 import TextField from '@mui/material/TextField'
@@ -8,10 +9,18 @@ const StyledCard = styled(Card)`
 	margin: 5px;
 `
 
-const handleSubmit = () => {
-	console.log("HEY")
-}
 const Contact = (props) => {
+	const initialValues = {
+		firstName: '',
+		lastName: '',
+		emailAddress: '',
+		phoneNumber: ''
+	}
+	const [values, setValues] = useState(initialValues)
+
+	const handleSubmit = () => {
+		console.log("HEY", values)
+	}
 	
 	return (
 		<StyledCard variant='outlined'>
@@ -19,21 +28,29 @@ const Contact = (props) => {
 				label='First Name'
 				size='small'
 				margin='normal'
+				value={values.firstName}
+				onChange={(ev) => {setValues({...values, firstName: ev.target.value})}}
 			/>
 			<TextField
 				label='Last Name'
 				size='small'
 				margin='normal'
+				value={values.lastName}
+				onChange={(ev) => {setValues({...values, lastName: ev.target.value})}}
 			/>
 			<TextField
 				label='Email'
 				size='small'
 				margin='normal'
+				value={values.emailAddress}
+				onChange={(ev) => {setValues({...values, emailAddress: ev.target.value})}}
 			/>
 			<TextField
 				label='Phone'
 				size='small'
 				margin='normal'
+				value={values.phoneNumber}
+				onChange={(ev) => {setValues({...values, phoneNumber: ev.target.value})}}
 			/>
 			<br/>
 			<Button
